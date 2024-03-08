@@ -1,0 +1,18 @@
+from fastapi import APIRouter, HTTPException
+from model.member.login import LoginRequest
+from common.enum import Gender
+
+router = APIRouter(
+    prefix="/qa/api",
+    tags=["Member"],
+    # responses={404: {"description": "Not fou454564nd"}},
+)
+
+
+@router.post(path="/member")
+async def login(request: LoginRequest) -> dict:
+    print(request)
+    if request.gender:
+        if request.gender != Gender.Male.value and request.gender != Gender.Female.value:
+            raise HTTPException(status_code=422, detail="Unprocessable Entity")
+    return {"msg": request}
