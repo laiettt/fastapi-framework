@@ -5,7 +5,6 @@ from common.enum import Gender
 router = APIRouter(
     prefix="/qa/api",
     tags=["Member"],
-    # responses={404: {"description": "Not fou454564nd"}},
 )
 
 

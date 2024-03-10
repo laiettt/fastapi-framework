@@ -1,0 +1,56 @@
+<script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous">
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+
+<body>
+<h1>Demo Tool!</h1>
+<div>Account: <input id="account" type="text" name="Account"></div>
+<div>Password: <input id="password" type="text" name="Password"></div>
+<div>Member_id: <input id="member_id" type="number" name="Member_id"></div>
+<div>Gender: <input id="gender" placeholder="None/F/M" type="text" name="Gender"></div>
+<button class="btn">送出</button>
+<hr>
+<span>Response: </span><span class="response"></span>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+       $('.btn').on('click',function(){
+
+          // 獲取表單數據
+          var account = $('#account').val();
+          var password = $('#password').val();
+          var member_id = $('#member_id').val();
+          var gender = $('#gender').val();
+
+          $.ajax({
+             url: 'http://127.0.0.1:8001/qa/api/member',
+             type: 'POST',
+             contentType: 'application/json',
+             data: JSON.stringify({
+                account: account,
+                password: password,
+                member_id: member_id,
+                gender: gender
+             }),
+
+             success: function (response) {
+         		$('.response').html(JSON.stringify(response));
+         	},
+             error: function (xhr, status, error) {
+                console.error(error);
+             }
+          });
+       });
+    });
+</script>
