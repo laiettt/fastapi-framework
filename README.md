@@ -29,9 +29,18 @@ templates -> html
 
 ***
 
-## run server
+## run server 
 ```
+Local:
 - uvicorn main:app --host 127.0.0.1 --port 8001
+
+or
+
+Docker:
+- cd ./fastapi-framework
+- docker build -t mock-service .
+- docker images -> get IMAGE ID
+- docker run -p 8000:8001 $INAGE ID
 ```
 
 ## create requirements

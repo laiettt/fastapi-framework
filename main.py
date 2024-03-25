@@ -4,9 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+origins = [
+    "*",
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_methods=["*"],
     allow_credentials=True,
     allow_headers=["*"],
@@ -23,4 +26,4 @@ async def home(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app="main:app", host="127.0.0.1", port=8001, reload=True)
+    uvicorn.run(app="main:app", host="0.0.0.0", port=8000)
